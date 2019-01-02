@@ -1,46 +1,38 @@
+bot.login(process.env.TOKEN)
 const Discord = require('discord.js');
 var bot = new Discord.Client();
 
-function sendError(message, description) {
-    message.channel.send({embed: {
-        color: 15158332,
-        description: ":x: " + description
-    }});
-}
-
-var prefix = ("!")
+var prefix = ("<")
 
 bot.on('ready', function () {
-    bot.user.setGame("Commande *help");
+    bot.user.setGame("Commande <help");
     console.log("Connecté");
 });
 
-bot.login(process.env.TOKEN)
-
 bot.on('message', message => {
         if(message.content[0] === prefix) {
-     if(message.content === "!modo") {
-var memberID = message.guild.members.filter(m=>m.roles.has('515996315176534026')).map(m=>m.id) //pour récupérer les membre du rôle
+     if(message.content === "<modo") {
+var memberID = message.guild.members.filter(m=>m.roles.has('530003212007374848')).map(m=>m.id) //pour récupérer les membre du rôle
 var aUser = message.author.tag 
 memberID.map(u => bot.users.get(u).send(`**${aUser}** a besoin d'aide !`));
 }}});
 bot.on('message', message => {
-    if (message.content === prefix + "maxa"){
+    if (message.content === prefix + "funball"){
         var embed = new Discord.RichEmbed()
-            .setTitle("Voici la chaîne de MaXa !")
-            .setDescription("https://www.youtube.com/channel/UCXFgrsiFjMY9PP9k9dUyaBg")
-            .setColor("#8A0808")
-            .setFooter("N'hésite pas à t'abonner !")
+            .setTitle("Le but de FunBall")
+            .setDescription("Le but de FunBall est de s'amuser dans une map que Plaxm et Booka ont crée ! Vous aurez une carabine pour essayer d'être le dernier survivant sur la map ! Si vous n'avez pas bien compris, n'hésitez pas à contacter un fondateur ou un modérateur en faisant <modo :) ")
+            .setColor("#932DAE")
         message.channel.send(embed);
     }
 });
 bot.on('message', message => {
-    if(message.content === "*help") {
+    if (message.content === prefix + "help") {
         var embed = new Discord.RichEmbed()
         .setTitle("Voici toutes le commandes du discord !")
-        .addField("!maxa", "Pour savoir la chaine YouTube MaXa !")
-        .addField("!modo", "Pour demander de l'aide aux modérateurs !")
-        .setColor("#86FF49")
-    message.channel.sendEmbed(embed);
-}});
+        .addField("<modo", "Pour demander de l'aide aux modérateurs !")
+        .addField("<funball", "Pour comprendre le but du FunBall !")
+        .setColor("#5A168B")
+    message.channel.send(embed);
+    }
+});
     
